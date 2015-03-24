@@ -22,7 +22,7 @@ executable pollock
   -- other-modules:       
   -- other-extensions:    
   build-depends:       base >=4.7  && <4.8
-               ,       snap >=0.12 && <0.13
+               ,       snap >=0.12
                    
   -- hs-source-dirs:      
   GHC-options: -threaded -02

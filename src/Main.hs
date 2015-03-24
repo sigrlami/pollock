@@ -1,14 +1,23 @@
 import Snap
+import Snap.Snaplet.Heist
+import Control.Lens
 import qualified Data.Text as T
 
 -- | The Pollock type identifies our application 
 --   and holds anything our snaplet needs to function.
-data Pollock = Pollock { } 
+data Pollock 
+  = Pollock { _heist :: Snaplet (Heist Pollock)
+            }
 
+makeLenses ''Pollock
+
+instance HasHeist Pollock where
+  heistLens = subSnaplet heist
+ 
 -- | The indexHandler will be invoked whenever someone 
 --   accesses the root URL, "/".
 indexHandler :: Handler Pollock Pollock ()
-indexHandler = writeText $ T.pack "Hello, world!"
+indexHandler = render "index"
 
 -- | Build a new Pollock snaplet.
 memoiseInit :: SnapletInit Pollock Pollock
@@ -17,8 +26,9 @@ memoiseInit =
               "Best pollin system!" 
               Nothing 
   $ do
+      h <- nestSnaplet "heist" heist $ heistInit "templates"
       addRoutes [("", indexHandler)]
-      return $ Memoise { }
+      return $ Memoise { _heist = h }
 
 main :: IO ()
 main = do

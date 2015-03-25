@@ -2,7 +2,7 @@
 -- documentation, see http://haskell.org/cabal/users-guide/
 
 name:                pollock
-version:             0.1.2.0
+version:             0.1.4.0
 synopsis:            social voting application
 -- description:         
 homepage:            pollock.io
@@ -23,6 +23,7 @@ executable pollock
   -- other-extensions:    
   build-depends:       base >=4.7  && <4.8
                ,       snap >=0.13
+               ,       snap-core
                ,       text >=1.2.0.4
                ,       lens >=4.8
   Extensions: OverloadedStrings

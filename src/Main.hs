@@ -1,6 +1,7 @@
 import Snap
 import Snap.Snaplet.Heist
 import Control.Lens
+import Snap.Util.FileServe
 import qualified Data.Text as T
 
 -- | The Pollock type identifies our application 
@@ -23,14 +24,15 @@ indexHandler = render "index"
 memoiseInit :: SnapletInit Pollock Pollock
 memoiseInit = 
   makeSnaplet "pollock" 
-              "Best pollin system!" 
+              "Best polling system!" 
               Nothing 
   $ do
       h <- nestSnaplet "heist" heist $ heistInit "templates"
-      addRoutes [("", indexHandler)]
+      addRoutes [ ("static", serveDirectory "static")
+                , ("", indexHandler)]
       return $ Pollock { _heist = h }
 
 main :: IO ()
 main = do
-  (_, site, _) <- runSnaplet Nothing memoiseInit -- Init Pollock snaplet
-  quickHttpServe site -- Start the Snap server
+  (_, site, _) <- runSnaplet Nothing memoiseInit
+  quickHttpServe site

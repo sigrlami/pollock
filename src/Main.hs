@@ -28,7 +28,7 @@ memoiseInit =
   $ do
       h <- nestSnaplet "heist" heist $ heistInit "templates"
       addRoutes [("", indexHandler)]
-      return $ Memoise { _heist = h }
+      return $ Pollock { _heist = h }
 
 main :: IO ()
 main = do

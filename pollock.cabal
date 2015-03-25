@@ -24,6 +24,7 @@ executable pollock
   build-depends:       base >=4.7  && <4.8
                ,       snap >=0.13
                ,       text >=1.2.0.4
+               ,       lens >=4.8
                    
   -- hs-source-dirs:      
   GHC-options: -threaded -O2

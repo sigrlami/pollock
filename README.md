@@ -1,6 +1,6 @@
 # Pollock
 
-[EN](#En) | [RU](#Ru) | [UA](#Ua)
+[EN](#en) | [RU](#ru) | [UA](#ua)
 
 # En
 

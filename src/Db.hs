@@ -106,7 +106,7 @@ getPollsForRange start end = do
     return $ sortBy pollTimeOrder nr
     where
         polls :: Handler Pollock Sqlite [Poll]
-        polls = query "SELECT id, title, desc, start, end, repeat, user_id FROM   polls WHERE deleted = 0 AND start < ? AND end > ?" (end, start)
+        polls = query "SELECT id, title, desc, start, end, user_id FROM   polls WHERE deleted = 0 AND start < ? AND end > ?" (end, start)
         
 savePoll :: User -> Maybe (T.Text, T.Text, UTCTime, UTCTime) -> Handler Pollock Sqlite ()
 savePoll (User uid _) (Just (title, desc, start, end)) = 

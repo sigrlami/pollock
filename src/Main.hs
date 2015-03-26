@@ -1,4 +1,5 @@
 import Control.Applicative
+import Control.Concurrent
 import Control.Lens
 import Snap
 import Snap.Snaplet.Heist
@@ -148,6 +149,10 @@ pollockInit =
       a <- nestSnaplet "auth"  auth  $
              initJsonFileAuthManager defAuthSettings sess "users.json"
       d <- nestSnaplet "db" db sqliteInit
+      
+      let c = sqliteConn $ d ^# snapletValue
+      liftIO $ withMVar c $ \conn -> Db.createTables conn
+
       addRoutes routes
       addAuthSplices h auth -- add <ifLoggedIn> <ifLoggedOut> tags support
       return $ Pollock { _heist = h, _sess = s, _auth = a , _db=d}

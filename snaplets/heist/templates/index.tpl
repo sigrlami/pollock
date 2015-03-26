@@ -44,10 +44,18 @@
                         <a class="page-scroll" href="#about">About</a>
                     </li>
                     <li>
+		     <ifLoggedOut> 
                      <div class="btn-group" role="group" aria-label="..." style="margin-top: 7px;">
                        <a class="btn btn-default" href="/signup" role="button">Sign Up</a>
-		       <a class="btn btn-default" href="/login" role="button">Log In</a>
+		       <a class="btn btn-primary" href="/login" role="button">Log In</a>
                      </div>
+		     </ifLoggedOut>
+		     <ifLoggedIn>
+		       <div class="btn-group" role="group" aria-label="..." style="margin-top: 7px;">
+		       <a class="btn btn-default" href="#"><loggedInUser/></a>
+		       <a class="btn btn-primary" href="/logout" role="button">Log Out</a>
+                     </div>
+		     </ifLoggedIn>  
                     </li>
                 </ul>
             </div>

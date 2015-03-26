@@ -83,6 +83,7 @@ pollockInit =
       a <- nestSnaplet "auth"  auth  $
              initJsonFileAuthManager defAuthSettings sess "users.json"
       addRoutes routes
+      addAuthSplices h auth -- add <ifLoggedIn> <ifLoggedOut> tags support
       return $ Pollock { _heist = h, _sess = s, _auth = a }
              
 main :: IO ()

@@ -8,8 +8,8 @@
     <meta name="author" content="">
 
     <title>Pollock - best polling system</title>
-    <link href="static/css/bootstrap.min.css" rel="stylesheet">
-    <link href="static/css/scrolling-nav.css" rel="stylesheet">
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/css/scrolling-nav.css" rel="stylesheet">
 
 </head>
 
@@ -28,7 +28,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand page-scroll" href="#page-top">
-                   <img style="height: 30px; margin-top: -5px;" src="static/img/logo.png">
+                   <img style="height: 30px; margin-top: -5px;" src="../static/img/logo.png">
                </a>
                <a class="navbar-brand page-scroll" href="#page-top"> Pollock </a>
             </div>
@@ -38,7 +38,24 @@
                 <ul class="nav navbar-nav pull-right">
                     <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
                     <li class="hidden">
-                        <a class="page-scroll" href="#page-top"></a>
+                        <a class="page-scroll" href="/"></a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#about">About</a>
+                    </li>
+                    <li>
+		     <ifLoggedOut> 
+                     <div class="btn-group" role="group" aria-label="..." style="margin-top: 7px;">
+                       <a class="btn btn-default" href="/signup" role="button">Sign Up</a>
+		       <a class="btn btn-primary" href="/login" role="button">Log In</a>
+                     </div>
+		     </ifLoggedOut>
+		     <ifLoggedIn>
+		       <div class="btn-group" role="group" aria-label="..." style="margin-top: 7px;">
+		       <a class="btn btn-default" href="#"><loggedInUser/></a>
+		       <a class="btn btn-primary" href="/logout" role="button">Log Out</a>
+                     </div>
+		     </ifLoggedIn>  
                     </li>
                 </ul>
             </div>
@@ -46,8 +63,8 @@
         </div>
         <!-- /.container -->
     </nav>
-   
-    <section id="intro" class="intro-section">
+
+       <section id="intro" class="intro-section">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -61,9 +78,9 @@
       <h4 style="text-align:center"> (c) 2015, Pollock.io</h4>
     </footer>
 
-    <script src="static/js/jquery.js"></script>
-    <script src="static/js/bootstrap.min.js"></script>
-    <script src="static/js/jquery.easing.min.js"></script>
-    <script src="static/js/scrolling-nav.js"></script>
+    <script src="../static/js/jquery.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+    <script src="../static/js/jquery.easing.min.js"></script>
+    <script src="../static/js/scrolling-nav.js"></script>
 </body>
 </html>

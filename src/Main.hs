@@ -6,6 +6,7 @@ import Snap.Snaplet.Session
 import Snap.Snaplet.Auth
 import Snap.Snaplet.Auth.Backends.JsonFile
 import Snap.Snaplet.Session.Backends.CookieSession
+import Snap.Snaplet.SqliteSimple
 import Snap.Util.FileServe
 import Heist.SpliceAPI
 import Application
@@ -33,7 +34,12 @@ routes = [ ("/signup"             , with auth handlerSignup)
 -- | The indexHandler will be invoked whenever someone 
 --   accesses the root URL, "/".
 handlerIndex :: Handler Pollock Pollock ()
-handlerIndex = render "index"
+handlerIndex = do
+  let start = UTCTime (fromGregorian 2015 03 1) 0
+  let end   = UTCTime (fromGregorian 2015 03 30) 0
+  polls <- withTop db $ getPollsForRange start end
+  renderWithSplices "index" $ do
+    "polls"   ## renderPolls polls
 
 -- Used to output an error to the user where needed.
 renderError :: Show a => a -> Handler Pollock (AuthManager Pollock) ()
@@ -141,9 +147,10 @@ pollockInit =
              initCookieSessionManager "site_key.txt" "sess" (Just 3600)
       a <- nestSnaplet "auth"  auth  $
              initJsonFileAuthManager defAuthSettings sess "users.json"
+      d <- nestSnaplet "db" db sqliteInit
       addRoutes routes
       addAuthSplices h auth -- add <ifLoggedIn> <ifLoggedOut> tags support
-      return $ Pollock { _heist = h, _sess = s, _auth = a }
+      return $ Pollock { _heist = h, _sess = s, _auth = a , _db=d}
              
 main :: IO ()
 main = do

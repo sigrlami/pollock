@@ -72,6 +72,8 @@
                   <h1>Trending Polls</h1>
 		   <ifLoggedIn>
                      <a href="/polls/new" class="btn btn-primary btn-success"><span class="glyphicon glyphicon-plus"></span> Create</a>
+		     <polls>
+		     </polls>  
                   </ifLoggedIn> 
                 </div>
             </div>

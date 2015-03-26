@@ -55,10 +55,8 @@ afterSignup (Left af) = renderError af
 afterSignup _         = render "_signupsuccess"
 
 -----------------------------------------------------------------------
-
-
                         
-handler
+handlerNewPoll ::
                         
 -- Triggers on the /signin page
 handlerLogin :: Handler Pollock (AuthManager Pollock) ()

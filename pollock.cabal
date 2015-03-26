@@ -21,13 +21,16 @@ executable pollock
   main-is:             Main.hs
   -- other-modules:       
   -- other-extensions:    
-  build-depends:       base >=4.7  && <4.8
-               ,       snap >=0.13
+  build-depends:       base 
+               ,       snap 
                ,       snap-core
-               ,       text >=1.2.0.4
-               ,       lens >=4.8
+               ,       text
+               ,       lens 
                ,       heist
                ,       bytestring
+               ,       snaplet-sqlite-simple
+               ,       sqlite-simple
+               ,       time
   Extensions: OverloadedStrings
             , TemplateHaskell 
   GHC-options: -threaded -O2

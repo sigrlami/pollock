@@ -45,8 +45,8 @@
                     </li>
                     <li>
                      <div class="btn-group" role="group" aria-label="..." style="margin-top: 7px;">
-                        <button type="button" class="btn btn-default">Sign Up</button>
-                        <button type="button" class="btn btn-primary">Log In</button>
+                       <a class="btn btn-default" href="/signup" role="button">Sign Up</a>
+		       <a class="btn btn-default" href="/login" role="button">Log In</a>
                      </div>
                     </li>
                 </ul>

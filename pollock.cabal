@@ -27,6 +27,7 @@ executable pollock
                ,       text >=1.2.0.4
                ,       lens >=4.8
                ,       heist
+               ,       bytestring
   Extensions: OverloadedStrings
             , TemplateHaskell 
   GHC-options: -threaded -O2

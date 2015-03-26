@@ -5,7 +5,7 @@ import Snap
 import Snap.Snaplet.Heist
 import Snap.Snaplet.Session
 import Snap.Snaplet.Auth
-import Snap.Snaplet.Auth.Backends.JsonFile
+import Snap.Snaplet.Auth.Backends.SqliteSimple
 import Snap.Snaplet.Session.Backends.CookieSession
 import Snap.Snaplet.SqliteSimple
 import Snap.Util.FileServe
@@ -144,11 +144,11 @@ pollockInit =
   $ do
       h <- nestSnaplet "heist" heist $
              heistInit "templates"
+      d <- nestSnaplet "db" db sqliteInit 
       s <- nestSnaplet "sess"  sess  $
              initCookieSessionManager "site_key.txt" "sess" (Just 3600)
       a <- nestSnaplet "auth"  auth  $
-             initJsonFileAuthManager defAuthSettings sess "users.json"
-      d <- nestSnaplet "db" db sqliteInit
+             initSqliteAuth sess d
       
       let c = sqliteConn $ d ^# snapletValue
       liftIO $ withMVar c $ \conn -> Db.createTables conn

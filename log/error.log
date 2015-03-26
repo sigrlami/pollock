@@ -94,3 +94,33 @@
 [25/Mar/2015:22:42:41 +0200] Server.httpServe: START, binding to [http://0.0.0.0:8000/]
 [25/Mar/2015:22:43:30 +0200] Server.httpServe: SHUTDOWN
 [25/Mar/2015:22:43:30 +0200] Server.httpServe: BACKEND STOPPED
+[26/Mar/2015:14:36:49 +0200] Server.httpServe: START, binding to [http://0.0.0.0:8003/]
+[26/Mar/2015:14:37:25 +0200] Server.httpServe: SHUTDOWN
+[26/Mar/2015:14:37:25 +0200] Server.httpServe: BACKEND STOPPED
+[26/Mar/2015:14:40:16 +0200] Server.httpServe: START, binding to [http://0.0.0.0:8003/]
+[26/Mar/2015:14:41:13 +0200] Server.httpServe: SHUTDOWN
+[26/Mar/2015:14:41:13 +0200] Server.httpServe: BACKEND STOPPED
+[26/Mar/2015:14:41:48 +0200] Server.httpServe: START, binding to [http://0.0.0.0:8003/]
+[26/Mar/2015:14:42:09 +0200] Server.httpServe: SHUTDOWN
+[26/Mar/2015:14:42:09 +0200] Server.httpServe: BACKEND STOPPED
+[26/Mar/2015:14:42:47 +0200] Server.httpServe: START, binding to [http://0.0.0.0:8003/]
+[26/Mar/2015:14:45:10 +0200] Server.httpServe: SHUTDOWN
+[26/Mar/2015:14:45:10 +0200] Server.httpServe: BACKEND STOPPED
+[26/Mar/2015:14:48:09 +0200] Server.httpServe: START, binding to [http://0.0.0.0:8003/]
+[26/Mar/2015:14:48:50 +0200] Server.httpServe: SHUTDOWN
+[26/Mar/2015:14:48:50 +0200] Server.httpServe: BACKEND STOPPED
+[26/Mar/2015:14:50:31 +0200] Server.httpServe: START, binding to [http://0.0.0.0:8003/]
+[26/Mar/2015:14:52:48 +0200] Server.httpServe: SHUTDOWN
+[26/Mar/2015:14:52:48 +0200] Server.httpServe: BACKEND STOPPED
+[26/Mar/2015:14:54:08 +0200] Server.httpServe: START, binding to [http://0.0.0.0:8003/]
+[26/Mar/2015:15:00:33 +0200] Server.httpServe: SHUTDOWN
+[26/Mar/2015:15:00:33 +0200] Server.httpServe: BACKEND STOPPED
+[26/Mar/2015:15:15:20 +0200] Server.httpServe: START, binding to [http://0.0.0.0:8003/]
+[26/Mar/2015:15:16:36 +0200] Server.httpServe: SHUTDOWN
+[26/Mar/2015:15:16:36 +0200] Server.httpServe: BACKEND STOPPED
+[26/Mar/2015:15:27:56 +0200] Server.httpServe: START, binding to [http://0.0.0.0:8003/]
+[26/Mar/2015:15:28:40 +0200] Server.httpServe: SHUTDOWN
+[26/Mar/2015:15:28:40 +0200] Server.httpServe: BACKEND STOPPED
+[26/Mar/2015:15:29:23 +0200] Server.httpServe: START, binding to [http://0.0.0.0:8003/]
+[26/Mar/2015:15:29:46 +0200] Server.httpServe: SHUTDOWN
+[26/Mar/2015:15:29:46 +0200] Server.httpServe: BACKEND STOPPED

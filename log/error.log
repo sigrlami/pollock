@@ -244,3 +244,6 @@ SQLite3 returned ErrorError while attempting to perform prepare "SELECT id, titl
 [26/Mar/2015:18:07:58 +0200] Server.httpServe: START, binding to [http://0.0.0.0:8000/]
 [26/Mar/2015:18:09:03 +0200] Server.httpServe: SHUTDOWN
 [26/Mar/2015:18:09:03 +0200] Server.httpServe: BACKEND STOPPED
+[27/Mar/2015:00:36:55 +0200] Server.httpServe: START, binding to [http://0.0.0.0:8000/]
+[27/Mar/2015:01:53:08 +0200] Server.httpServe: SHUTDOWN
+[27/Mar/2015:01:53:08 +0200] Server.httpServe: BACKEND STOPPED

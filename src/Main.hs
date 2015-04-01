@@ -1,5 +1,9 @@
+{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE ScopedTypeVariables #-}
+
 import Control.Applicative
 import Control.Concurrent
+import Control.Monad.IO.Class
 import Control.Lens
 import Snap
 import Snap.Snaplet.Heist
@@ -12,12 +16,14 @@ import Snap.Util.FileServe
 import Heist.SpliceAPI
 import Application
 import Db
+import Data.Maybe
 import           Data.Time
 import           Text.Read
 import qualified Heist.Interpreted as I
 import qualified Data.Text as T
 import qualified Data.Text.Encoding as T
 import qualified Data.ByteString as BS
+import qualified Data.ByteString.Char8 as BSC
 
 --------------------------------------------------------------------------------    
 
@@ -26,7 +32,7 @@ routes = [ ("/signup"             , with auth handlerSignup)
          , ("/login"              , with auth handlerLogin)
          , ("/logout"             , with auth handlerLogout)
          , ("/polls/new"          , with auth handlerPollNew)
-         --, ("/poll/new/:pollid"   , with auth handlerPollView)
+         --, ("/poll/view/:pollid"   , with auth handlerPollView)
          --, ("/poll/delete/:pollid", with auth handlerPollDelete)
          , ("static"              , serveDirectory "static")
          , (""                    , handlerIndex)
@@ -36,11 +42,12 @@ routes = [ ("/signup"             , with auth handlerSignup)
 --   accesses the root URL, "/".
 handlerIndex :: Handler Pollock Pollock ()
 handlerIndex = do
-  let start = UTCTime (fromGregorian 2015 03 1) 0
-  let end   = UTCTime (fromGregorian 2015 03 30) 0
+  let start = UTCTime (fromGregorian 2016 02 1) 0
+  let end   = UTCTime (fromGregorian 2016 03 1) 0
   polls <- withTop db $ getPollsForRange start end
+  logError $ BSC.pack $ (show polls) 
   renderWithSplices "index" $ do
-    "polls"   ## renderPolls polls
+    "polls" ## renderPolls polls
 
 -- Used to output an error to the user where needed.
 renderError :: Show a => a -> Handler Pollock (AuthManager Pollock) ()
@@ -50,15 +57,14 @@ renderError' :: String -> Handler Pollock (AuthManager  Pollock) ()
 renderError' s = renderWithSplices "_error" $
                  "errormsg" ## I.textSplice . T.pack $ s
 
-
 -- Turn an event into splices. Needed for rendering.
 renderPoll :: Monad n => Poll -> Splices (I.Splice n)
 renderPoll poll = do
-    "pollid"          ## I.textSplice . T.pack . show $ pollId poll
-    "pollttitle"      ## I.textSplice $ pollTitle poll
-    "polldescription" ## I.textSplice $ pollDesc poll
+    "pollid"          ## I.textSplice . T.pack . show $ pollId    poll
+    "polltitle"      ## I.textSplice . T.pack . show $ pollTitle poll
+    "polldescription" ## I.textSplice . T.pack . show $ pollDesc  poll
     "pollstart"       ## I.textSplice . T.pack . show $ pollStart poll
-    "pollend"         ## I.textSplice . T.pack . show $ pollEnd poll
+    "pollend"         ## I.textSplice . T.pack . show $ pollEnd   poll
     "pollowner"       ## I.textSplice . T.pack . show $ pollOwner poll
 
 renderPolls :: [Poll] -> SnapletISplice Pollock
@@ -107,13 +113,17 @@ handlerPollNew = method GET (withLoggedInUser handleForm) <|> method POST (withL
   where
     handleForm :: Db.User -> Handler Pollock (AuthManager Pollock) ()
     handleForm _ = render "polls/new"
+
     handleFormSubmit :: Db.User -> Handler Pollock (AuthManager Pollock) ()
-    handleFormSubmit user = do
-      -- parameters is now [Maybe BS.ByteString]
-      parameters <- mapM getParam ["title", "description", "start", "end"]
-      -- sequence parameters is Maybe [BS.ByteString]
-      withTop db $ savePoll user $ sequence parameters >>= parseParameters
-      redirect "/"
+    handleFormSubmit user = 
+      do
+        logError "r"
+        parameters <- mapM getParam ["title", "description", "start", "end"]
+        let params = fromMaybe [] $ sequence parameters
+        logError $ BSC.pack $ (show params)    
+        withTop db $ savePoll user $ parseParameters params
+        redirect "/"
+      
     parseParameters :: [BS.ByteString]
                     -> Maybe (T.Text, T.Text, UTCTime, UTCTime)
     parseParameters [title, desc, start, end] = do

@@ -73,6 +73,13 @@
 		   <ifLoggedIn>
                      <a href="/polls/new" class="btn btn-primary btn-success"><span class="glyphicon glyphicon-plus"></span> Create</a>
 		     <polls>
+		       <div>
+			 <h3><a href="/polls/view/${pollid}"><polltitle /></a></h3>			        <p><polldescription /></p>
+			 <ul>
+			   <li><pollstart /></li>
+			   <li><pollend /></li>
+			 </ul>
+		       </div>
 		     </polls>  
                   </ifLoggedIn> 
                 </div>
@@ -92,7 +99,7 @@
     </section>
 
     <footer class="navbar navbar-bottom">
-      <h4 style="text-align:center"> (c) 2015, Pollock.io</h4>
+      <h4 style="text-align:center"> (c) 2015-2016, pollock.rocks</h4>
     </footer>
 
     <script src="static/js/jquery.js"></script>

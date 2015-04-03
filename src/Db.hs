@@ -24,6 +24,7 @@ import           Database.SQLite.Simple.Internal
 import           Database.SQLite.Simple.Ok
 import           Snap.Snaplet
 import           Snap.Snaplet.SqliteSimple
+import qualified Data.ByteString.Char8 as BSC
 
 import           Application
 
@@ -109,7 +110,7 @@ getPollsForRange start end = do
         polls = query "SELECT id, title, desc, start, end, user_id FROM   polls WHERE deleted = 0 AND start < ? AND end > ?" (end, start)
         
 savePoll :: User -> Maybe (T.Text, T.Text, UTCTime, UTCTime) -> Handler Pollock Sqlite ()
-savePoll (User uid _) (Just (title, desc, start, end)) = 
+savePoll (User uid _) (Just (title, desc, start, end)) =
     execute "INSERT INTO polls (title, desc, start, end, user_id) VALUES (?,?,?,?,?)"
               ( title
               , desc

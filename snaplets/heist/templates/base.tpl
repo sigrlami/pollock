@@ -9,7 +9,7 @@
 
     <title>Pollock - best polling system</title>
     <link href="../static/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../static/css/scrolling-nav.css" rel="stylesheet">
+    <link href="../static/css/app.css" rel="stylesheet">
 
 </head>
 
@@ -27,10 +27,10 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand page-scroll" href="#page-top">
+                <a class="navbar-brand page-scroll" href="/">
                    <img style="height: 30px; margin-top: -5px;" src="../static/img/logo.png">
                </a>
-               <a class="navbar-brand page-scroll" href="#page-top"> Pollock </a>
+               <a class="navbar-brand page-scroll" href="/"> pollock </a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -40,8 +40,15 @@
                     <li class="hidden">
                         <a class="page-scroll" href="/"></a>
                     </li>
-                    <li>
-                        <a class="page-scroll" href="#about">About</a>
+		    <li>
+                      <ifLoggedIn>
+			 <a href="/channels" class="btn"><span class="brand glyphicon glyphicon-align-left"></span></a>
+                      </ifLoggedIn> 
+                    </li>
+		    <li>
+                      <ifLoggedIn>
+			 <a href="/polls/new" class="btn"><span class="brand glyphicon glyphicon-plus"></span></a>
+                      </ifLoggedIn> 
                     </li>
                     <li>
 		     <ifLoggedOut> 
@@ -75,7 +82,7 @@
     </section>
 
     <footer class="navbar navbar-bottom">
-      <h4 style="text-align:center"> (c) 2015, Pollock.io</h4>
+      <h4 style="text-align:center"> (c) 2015-2017, Kelecorix, Inc</h4>
     </footer>
 
     <script src="../static/js/jquery.js"></script>

@@ -65,6 +65,7 @@ executable pollock
                ,       text-format
                ,       tuple
                ,       MissingH
+               ,       data-default
   Extensions:    OverloadedStrings
                , TemplateHaskell
 

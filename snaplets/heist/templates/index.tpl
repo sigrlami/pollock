@@ -9,7 +9,7 @@
 
     <title>Pollock - best polling system</title>
     <link href="static/css/bootstrap.min.css" rel="stylesheet">
-    <link href="static/css/scrolling-nav.css" rel="stylesheet">
+    <link href="static/css/app.css" rel="stylesheet">
 
 </head>
 
@@ -30,7 +30,7 @@
                 <a class="navbar-brand page-scroll" href="#page-top">
                    <img style="height: 30px; margin-top: -5px;" src="static/img/logo.png">
                </a>
-               <a class="navbar-brand page-scroll" href="#page-top"> Pollock </a>
+               <a class="navbar-brand brand page-scroll" href="#page-top"> pollock </a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -40,8 +40,15 @@
                     <li class="hidden">
                         <a class="page-scroll" href="#page-top"></a>
                     </li>
+		    <li>
+                      <ifLoggedIn>
+			 <a href="/channels" class="btn btn-menu"><span class="brand glyphicon glyphicon-align-left"></span></a>
+                      </ifLoggedIn> 
+                    </li>
                     <li>
-                        <a class="page-scroll" href="#about">About</a>
+                      <ifLoggedIn>
+			 <a href="/polls/new" class="btn btn-menu"><span class="brand glyphicon glyphicon-plus"></span></a>
+                  </ifLoggedIn> 
                     </li>
                     <li>
 		     <ifLoggedOut> 
@@ -69,9 +76,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                  <h1>Trending Polls</h1>
+                  <h1>Popular Polls</h1>
 		   <ifLoggedIn>
-                     <a href="/polls/new" class="btn btn-primary btn-success"><span class="glyphicon glyphicon-plus"></span> Create</a>
 		     <polls>
 		       <div>
 			 <h3><a href="/polls/view/${pollid}"><polltitle /></a></h3>			        <p><polldescription /></p>
@@ -92,14 +98,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1>About Pollock</h1>
+                    <h1>Trending Polls</h1>
                 </div>
             </div>
         </div>
     </section>
 
     <footer class="navbar navbar-bottom">
-      <h4 style="text-align:center"> (c) 2015-2016, pollock.rocks</h4>
+      <h4 style="text-align:center"> (c) 2015-2017, Kelecorix, Inc</h4>
     </footer>
 
     <script src="static/js/jquery.js"></script>

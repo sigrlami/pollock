@@ -14,16 +14,17 @@ import Database.PostgreSQL.Simple.FromField
 import Database.PostgreSQL.Simple.FromRow
 --import Database.PostgreSQL.Simple.ToField
 import Database.PostgreSQL.Simple.ToRow
+import Data.Default
 
 --------------------------------------------------------------------------------
 
 data Poll =
   Poll { pollId    :: Int
-       , pollTitle :: Text
-       , pollDesc  :: Text
-       , pollStart :: UTCTime
-       , pollEnd   :: UTCTime
-       , pollOwner :: Int
+       , pollTitle :: Maybe Text
+       , pollDesc  :: Maybe Text
+       , pollStart :: Maybe UTCTime
+       , pollEnd   :: Maybe UTCTime
+       , pollOwner :: Maybe Int
        } deriving (Eq, Generic, Show)
           
 -- For pulling from the database
@@ -35,3 +36,6 @@ instance ToJSON   Poll
 
 instance FromRow Poll
 instance ToRow   Poll
+
+instance Default Poll where
+  def = Poll 0 Nothing Nothing Nothing Nothing Nothing

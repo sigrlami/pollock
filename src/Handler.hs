@@ -54,6 +54,7 @@ import           Snap.Snaplet.Session
 import           System.IO.Unsafe
 import           System.Random
 import           Text.Read
+import           Data.Default
 
 import           Application
 import           Db
@@ -69,7 +70,7 @@ handlerIndex :: Handler Pollock Pollock ()
 handlerIndex = do
   let start = UTCTime (fromGregorian 2016 02 1) 0
   let end   = UTCTime (fromGregorian 2016 03 1) 0
-  polls <- withTop db $ getPollsForRange start end
+  polls <-  liftPG $ \conn -> liftIO $ Db.getPollsForRange conn start end
   logError $ BSC.pack $ (show polls) 
   renderWithSplices "index" $ do
     "polls" ## renderPolls polls
@@ -145,8 +146,10 @@ handlerPollNew = method GET (withLoggedInUser handleForm) <|> method POST (withL
         logError "r"
         parameters <- mapM getParam ["title", "description", "start", "end"]
         let params = fromMaybe [] $ sequence parameters
-        logError $ BSC.pack $ (show params)    
-        withTop db $ savePoll user $ parseParameters params
+        logError $ BSC.pack $ (show params)
+        -- $ parseParameters params 
+        let poll = def
+        liftPG $ \conn -> liftIO $ Db.savePoll conn poll
         redirect "/"
       
     parseParameters :: [BS.ByteString]

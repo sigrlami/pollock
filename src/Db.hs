@@ -1,28 +1,42 @@
-{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE OverloadedStrings   #-}
 {-# LANGUAGE ScopedTypeVariables #-}
+{-# LANGUAGE QuasiQuotes         #-}
+{-# LANGUAGE BangPatterns        #-}
+{-# LANGUAGE DeriveGeneric       #-}
+{-# LANGUAGE DeriveAnyClass      #-}
 
 module Db ( User(..)
           , Poll(..)
-            --, createTables
+          , initialize  
           , savePoll
           , getPoll
-          , getPollsForUser
+          , getPolls  
+          --, getPollsForUser
           , getPollsForRange
           , deletePoll
           ) where
 
 import           Control.Applicative
+import qualified Control.Exception as E
 import           Control.Monad
+import           Prelude hiding (id)
+import           Data.Aeson
 import qualified Data.ByteString.Char8 as BSC
 import           Data.List
 import qualified Data.Text as T
 import           Data.Time (UTCTime)
-import qualified Database.PostgreSQL.Simple as S
+import           Data.Typeable
+import           Data.String (fromString)
+import           Language.Haskell.TH
+import           Language.Haskell.TH.Quote
+import           Database.PostgreSQL.Simple
 import           Database.PostgreSQL.Simple.FromField
+import           Database.PostgreSQL.Simple.FromRow
 import           Database.PostgreSQL.Simple.Internal
 import           Database.PostgreSQL.Simple.Ok
 import           Database.PostgreSQL.Simple.ToField
-import           Snap.Snaplet
+import           GHC.Generics
+import           Safe
 
 import           Application
 import           Types.Poll
@@ -38,60 +52,91 @@ pollTimeOrder e1 e2 = case pollStart e1 `compare` pollStart e2 of
     EQ -> pollEnd e1 `compare` pollEnd e2
     LT -> LT
     GT -> GT              
-        
+
+-----------------------------------------------------------------------------
+data ConnectConfig = ConnectConfig
+  { host     :: String
+  , port     :: String
+  , dbs      :: String
+  , user     :: String
+  , pass     :: String
+  } deriving (Generic, Eq, Read, Show, Typeable, FromJSON, ToJSON)
+
+-- | This is default parameters that
+--   are in use if config wasn't supplied
+defaultConnectConfig = ConnectConfig {
+    host     = "db"
+  , port     = "5432"
+  , dbs      = "lumper"
+  , user     = "lumper"
+  , pass     = "lumper-jack"
+ }
+
+mkConnInfo :: ConnectConfig -- ^ Internal configuration representation
+           -> ConnectInfo   -- ^ Representation used by Postgresql.Simple
+mkConnInfo config =
+  defaultConnectInfo
+  { connectHost     = host config 
+  , connectPort     = fromInteger $ read $ port config
+  , connectDatabase = dbs  config
+  , connectUser     = user config
+  , connectPassword = pass config
+  }
+
 --------------------------------------------------------------------------------
--- Database creation
---
--- createTables is run at every start up. If it doesn't find the  pollstable,
--- it creates it. (Note that Auth handles the user table)
---------------------------------------------------------------------------------
 
+-- | Db data initialization function
+-- 
+initialize :: Connection -> IO ()
+initialize conn = do
+  queryS <- readFile "db/init.sql"
+  let query' = fromString $ queryS  
+  execute_ conn query'
+  return ()
 
---------------------------------------------------------------------------------
--- Communication with the database
---
--- Functions to get polls from the database as well as saving to it.
---------------------------------------------------------------------------------
+getPoll :: Connection -> Integer -> IO (Maybe Poll)
+getPoll conn id = do
+  let !query'  = "SELECT * FROM poll WHERE id=?"      
+      !query'' = fromString $ query' :: Query
+  (xss::[Poll]) <- query conn query'' (Only (id::Integer))
+  return $ headMay xss
 
--- getPoll :: Maybe Int -> IO [Poll]
--- getPoll Nothing = return []
--- getPoll (Just eid) =
---     query "SELECT id, title, desc, start, end, user_id FROM polls WHERE  deleted = 0 AND id = ?" (Only eid)
+savePoll :: Connection -> Poll -> IO Integer
+savePoll conn poll = do
+  let query'' = fromString $ "INSERT INTO tags(group_id, tag, tag_ru, tag_he) VALUES (?, ?, ?, ?) returning id"
+  (xs::[Only Integer]) <- query conn query'' poll
+  case headMay xs of
+    Nothing -> return $ 1
+    Just x  -> return $ fromOnly x 
 
--- getPollsForUser :: User -> IO [Poll]
--- getPollsForUser (User user_id _) =
---     query "SELECT id, title, desc, start, end, user_id FROM polls WHERE  deleted = 0 AND user_id = ?" (Only user_id)
+getTenders :: Connection -> IO [Poll]
+getTenders conn = do
+  let !query'  = "SELECT * FROM poll" :: Query
+  !(xss::[Poll]) <- query_ conn query'
+  return $ xss
 
--- -- Poll is in range if its end is after the start of the range AND its start
--- -- is before the end of the range. This gets all those partially in the range.
--- getPollsForRange :: UTCTime -> UTCTime ->IO [Poll]
--- getPollsForRange start end = do
---     nr <- polls
---     return $ sortBy pollTimeOrder nr
---     where
---         polls :: Handler Pollock Sqlite [Poll]
---         polls = query "SELECT id, title, desc, start, end, user_id FROM   polls WHERE deleted = 0 AND start < ? AND end > ?" (end, start)
-        
--- savePoll :: User -> Maybe (T.Text, T.Text, UTCTime, UTCTime) -> Handler Pollock Sqlite ()
--- savePoll (User uid _) (Just (title, desc, start, end)) =
---     execute "INSERT INTO polls (title, desc, start, end, user_id) VALUES (?,?,?,?,?)"
---               ( title
---               , desc
---               , start
---               , end
---               , uid
---               )
--- savePoll _ _ = return ()
+getPolls :: Connection -> IO [Poll]
+getPolls conn = do
+  let !query'  =  Data.List.unlines
+                 [ "SELECT * FROM poll"
+                 ]  
+      !query'' = fromString $ query' :: Query
+  (xss::[Poll]) <- query_ conn query''
+  return xss
 
--- -- Only deletes if user owns poll as well
--- -- TODO: check is already done when it is used. Maybe doesn't belong here.
--- deletePoll :: User -> Poll -> Handler Pollock Sqlite ()
--- deletePoll (User uid _) poll =
---     execute "UPDATE polls SET deleted = 1 WHERE id = ? AND user_id = ?" (pollId poll, uid)
-
-getPoll  = undefined
-savePoll = undefined
-getPollsForUser = undefined
-getPollsForRange = undefined
-deletePoll = undefined
+getPollsForRange :: Connection -> UTCTime -> UTCTime -> IO [Poll]
+getPollsForRange conn start end = do
+  let !query'  =  Data.List.unlines
+                 [ "SELECT * FROM poll"
+                 ]  
+      !query'' = fromString $ query' :: Query
+  (xss::[Poll]) <- query_ conn query''
+  return xss
+  
+deletePoll :: Connection -> IO ()
+deletePoll conn = do
+  let !query'  = "TRUNCATE TABLE poll RESTART IDENTITY" 
+      !query'' = fromString $ query'  
+  execute_ conn query''
+  return ()   
 

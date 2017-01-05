@@ -147,8 +147,8 @@ handlerPollNew = method GET (withLoggedInUser handleForm) <|> method POST (withL
         parameters <- mapM getParam ["title", "description", "start", "end"]
         let params = fromMaybe [] $ sequence parameters
         logError $ BSC.pack $ (show params)
-        -- $ parseParameters params 
         let poll = def
+            poll'= parseParameters' params
         liftPG $ \conn -> liftIO $ Db.savePoll conn poll
         redirect "/"
       
@@ -161,7 +161,19 @@ handlerPollNew = method GET (withLoggedInUser handleForm) <|> method POST (withL
       end'       <- readBSMaybe' end
       return (title', desc', start', end')
     parseParameters _ = Nothing
-                      
+
+    parseParameters' :: [BS.ByteString] -> Maybe Poll
+    parseParameters' [title, desc, start, end] = do
+      let title' = T.decodeUtf8 title
+      let desc'  = T.decodeUtf8 desc
+      start'     <- readBSMaybe' start
+      end'       <- readBSMaybe' end
+      -- let start'' = 
+      --    end''   =   
+      return $ Poll 0 (Just title') (Just desc') (Just start') (Just end') (Just 0) Nothing 
+    parseParameters' _ = Nothing
+    
+    
 -- Triggers on the /signin page
 handlerLogin :: Handler Pollock (AuthManager Pollock) ()
 handlerLogin = method GET handleForm <|> method POST handleFormSubmit

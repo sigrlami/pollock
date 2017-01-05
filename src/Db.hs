@@ -125,8 +125,8 @@ getPollsForRange conn start end = do
                  , "WHERE start=? AND end=?"  
                  ]  
       !query'' = fromString $ query' :: Query
-      vals 
-  (xss::[Poll]) <- query_ conn query''
+      vals = [start, end] 
+  (xss::[Poll]) <- query conn query'' vals
   return xss
   
 deletePoll :: Connection -> IO ()

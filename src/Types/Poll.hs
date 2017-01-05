@@ -25,12 +25,9 @@ data Poll =
        , pollStart :: Maybe UTCTime
        , pollEnd   :: Maybe UTCTime
        , pollOwner :: Maybe Int
+       , pollChann :: Maybe Int  
        } deriving (Eq, Generic, Show)
           
--- For pulling from the database
--- instance FromRow Poll where
---     fromRow = Poll <$> field <*> field <*> field <*> field <*> field <*> field
-
 instance FromJSON Poll
 instance ToJSON   Poll
 
@@ -38,4 +35,4 @@ instance FromRow Poll
 instance ToRow   Poll
 
 instance Default Poll where
-  def = Poll 0 Nothing Nothing Nothing Nothing Nothing
+  def = Poll 0 Nothing Nothing Nothing Nothing Nothing Nothing

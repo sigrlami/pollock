@@ -67,9 +67,9 @@ data ConnectConfig = ConnectConfig
 defaultConnectConfig = ConnectConfig {
     host     = "db"
   , port     = "5432"
-  , dbs      = "lumper"
-  , user     = "lumper"
-  , pass     = "lumper-jack"
+  , dbs      = "pollock"
+  , user     = "pollock"
+  , pass     = "pollock-starfish"
  }
 
 mkConnInfo :: ConnectConfig -- ^ Internal configuration representation
@@ -103,17 +103,11 @@ getPoll conn id = do
 
 savePoll :: Connection -> Poll -> IO Integer
 savePoll conn poll = do
-  let query'' = fromString $ "INSERT INTO tags(group_id, tag, tag_ru, tag_he) VALUES (?, ?, ?, ?) returning id"
+  let query'' = fromString $ "INSERT INTO poll(title, desc, start, end, owner, channel_id ) VALUES (?, ?, ?, ?, ?, ?) returning id"
   (xs::[Only Integer]) <- query conn query'' poll
   case headMay xs of
     Nothing -> return $ 1
     Just x  -> return $ fromOnly x 
-
-getTenders :: Connection -> IO [Poll]
-getTenders conn = do
-  let !query'  = "SELECT * FROM poll" :: Query
-  !(xss::[Poll]) <- query_ conn query'
-  return $ xss
 
 getPolls :: Connection -> IO [Poll]
 getPolls conn = do
@@ -128,8 +122,10 @@ getPollsForRange :: Connection -> UTCTime -> UTCTime -> IO [Poll]
 getPollsForRange conn start end = do
   let !query'  =  Data.List.unlines
                  [ "SELECT * FROM poll"
+                 , "WHERE start=? AND end=?"  
                  ]  
       !query'' = fromString $ query' :: Query
+      vals 
   (xss::[Poll]) <- query_ conn query''
   return xss
   

@@ -3,7 +3,7 @@ version:             0.1.5.0
 synopsis:            social voting application
 description:         WebApp impemented in SNap
 homepage:            pollock.io
-license:             BSD3
+license:             MIT
 license-file:        LICENSE
 author:              Sergey Bushnyak
 maintainer:          sergey.bushnyak@sigrlami.eu

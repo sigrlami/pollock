@@ -2,11 +2,20 @@
 
 [EN](#en) | [RU](#ru) | [UA](#ua)
 
-# En
+## How to run?
+
+1. Download stack tool http://haskellstack.org/ for your platform 
+2. Navigate to top directory
+3. Run `stack build` command, which will download everything that's necessary for the project
+4. Run `stack exec -- pollock -p 4100` to run web server with code
+5. Install PostgreSQL server with db `pollock` and user `pollock`, you can see config add `snaplets/postgresql-simple/devel.cfg`
+
+
+## En
 
 `pollock` is a complete web application written in Haskell, intended as education project and reference for beginners. You can see development changes by looking at the git commit history of this repository, each stage represent small step in development. I start from simplistic "Hello, World!" app to a fully-functional social voting application with PostgreSQL database integration.
 
-## Starting out
+### Starting out
 
 Begin by entering the following commands into your terminal window.  You'll need to have Haskell installed.
 
@@ -30,7 +39,7 @@ $ cabal install
 $ ./dist/build/pollock/pollock
 ```
 
-## Stages
+### Stages
 
 Although looking at the checked out code may be helpful, a more informative way to look at this project is by viewing the commit history.  Each stage is a single git commit, designed to add a single piece of functionality, as you might do if you were creating a website from scratch.
 
@@ -54,10 +63,10 @@ Note: You need PostgreSQL installed for all following stages.
 * [Stage 13]()
 * [Stage 14]()
 
-# Ru
+## Ru
 `pollock` это полноценное веб приложение написанное на Haskell, предназначенное в качестве проекта для обучения и справки для начинающих. Вы можете посмотреть изменения в процессе разработки с помощью истории git коммитов, каждый этап представляет небольшой шаг в процессе разработки. Я начинаю с простейшего "Hello, World!" приложения и заканчиваю полностью рабочим приложения обеспечивающим интеграцию с базой данных PostgreSQL, приложения для онлайн голосования.
 
-## Начинаем
+### Начинаем
 
 Для того, чтоб начать введите следующие команды в окне терминала. У вас должне быть установлен Haskell.
 
@@ -80,7 +89,7 @@ $ cabal install
 $ ./dist/build/pollock/pollock
 ```
 
-## Этапы
+### Этапы
 
 Несмотря на то, что просмотр уже завершенного этапа полезен, более информативный способ для изучения это просмотр истории коммитов каждого бранча. Каждый этап это отдельный бранч, с набором коммитов, реализующие кусочек функциональности, так как будто вы создаете приложения с нуля.
 
@@ -105,11 +114,11 @@ $ ./dist/build/pollock/pollock
 * [Stage 14]()
 
 
-# Ua
+## Ua
 
 `pollock` це повноцінний веб додаток написаний на Haskell, призначений у якості проекта для навчання та довідки для початківців. Ви можете продивитися зміни у процессі розробки з допомогою git коммітів, кожний етап це невеличкий крок у процессі розробки. Я починаю з найпростішого "Hello, World!" додатка та закінчую повністю робочим додатком, забезпечуючим інтеграцію с базою данних PostgreSQL, додаток для онлайн голосування.
 
-## Починаемо
+### Починаемо
 
 Для того, шоб почати введіть наступні команди в вікні термінала. У вас має бути встановлен Haskell.
 
@@ -135,7 +144,7 @@ $ cabal install
 $ ./dist/build/pollock/pollock
 ```
 
-## Етапи
+### Етапи
 
 Несмотря на то, что просмотр уже завершенного этапа полезен, более информативный способ для изучения это просмотр истории коммитов каждого бранча. Каждый этап это отдельный бранч, с набором коммитов, реализующие кусочек функциональности, так как будто вы создаете приложения с нуля.
 

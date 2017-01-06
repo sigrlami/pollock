@@ -13,7 +13,7 @@ COPY keys/  /etc/nginx/ssl/
 RUN ls -al /etc/nginx/ssl/
 
 RUN mkdir -p /var/www/html
-COPY adscout.space/ /var/www/html
+COPY www/ /var/www/html
 RUN ls -al /var/www/html/static
 
 # Copy all configs to directory

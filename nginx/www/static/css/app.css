@@ -1,0 +1,535 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
+body{
+    height: 100%;
+}
+#intro {
+    padding-top: 50px;
+    height: 91%;
+}
+#intro h2 {
+    text-align: left;
+}
+.header {
+    display: table;
+    position: relative;
+    width: 100%;
+    height: 85%;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+.footer {
+    background-color: #ffffff;
+    margin: 0 0 0 0;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 80px;
+}
+.copyright {
+    text-align: center;
+    clear: both;
+    width: 100%;
+    display: inline-block;
+}
+.copyright #left {
+    float: left;
+    width: 50%;
+    text-align: right;
+}
+.copyright #right {
+    float: right;
+    width: 50%;
+    text-align: left;
+    margin-right: -5px;
+    
+}
+.copyright #version {
+    margin-left: 40px;
+    text-align:center;
+}
+
+.footer #powered {
+    text-align: center;
+    margin: -10px 0 0 70px;
+}
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    background: red;
+    cursor: inherit;
+    display: block;
+}
+.text-vertical-center {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
+.text-vertical-center h1 {
+    color: white;
+    font-size: 5.5em;
+    font-weight: 900;
+}
+.text-vertical-center h3 {
+    color: white;
+    font-size: 3.5em;
+    font-weight: 700;
+}
+.dates {
+    list-style-type: none;
+}
+input[readonly] {
+    background-color: white !important;
+    cursor: text !important;
+}
+.row-centered {
+    text-align: center;
+    margin: 250px 0px 0px 150px;
+}
+.col-centered {
+    display: inline-block;
+    float: none;
+    text-align: left;
+    margin-right: -4px;
+}
+
+@media (min-width:320px) {
+    .row-centered {
+       text-align: center;
+       margin: 230px 0px 0px 0px;
+    }
+    .search {
+	margin: 0 auto;
+	width: 100%;
+    }
+    .search input {
+	width: 100%;
+	height: 40px;
+	outline: none;
+	border: 1px solid gainsboro;
+    }
+    .search button {
+	height: 40px;
+	background-color: #f36c3d;
+	color: white;
+	margin: 5px 0 0 125px;
+	padding: 10px;
+	border: none;
+    }
+    .hrm {
+    position: absolute;
+    width: 100%;
+    bottom: 80px;
+    height: 75px;
+    background: transparent url('../img/houses.png') repeat-x bottom center;
+    background-size: 100% 70px;
+}
+
+}
+
+@media (min-width:768px) {
+    .search {
+	margin: 0 auto;
+	width: 80%;
+    }
+    .search input {
+	width: 100%;
+	height: 40px;
+	outline: none;
+	border: 1px solid gainsboro;
+    }
+    .search button {
+	height: 40px;
+	background-color: #f36c3d;
+	color: white;
+	margin: 0px 0 0 -30px;
+	padding: 10px;
+	border: none;
+    }
+    .row-centered {
+	text-align: center;
+	margin: 250px 0px 0px 150px;
+    }
+    .hrm {
+    position: absolute;
+    width: 100%;
+    bottom: 80px;
+    height: 75px;
+    background: transparent url('../img/houses.png') repeat-x bottom center;
+    background-size: 100% 70px;
+}
+
+}
+
+@media (min-width:1280px) {
+    .search {
+	margin: 0 auto;
+	width: 58%;
+    }
+    .search input {
+	width: 100%;
+	height: 40px;
+	outline: none;
+	border: 1px solid gainsboro;
+    }
+    .search button {
+	height: 40px;
+	background-color: #f36c3d;
+	color: white;
+	margin: 0px 0 0 -30px;
+	padding: 10px;
+	border: none;
+    }
+    .row-centered {
+	text-align: center;
+	margin: 250px 0px 0px 150px;
+    }
+    .hrm {
+    position: absolute;
+    width: 100%;
+    bottom: 90px;
+    height: 75px;
+    background: transparent url('../img/houses.png') repeat-x bottom center;
+    background-size: 100% 70px;
+}
+
+}
+
+@media (min-width:1920px) {
+    .search {
+	margin: 0 auto;
+	width: 50%;
+    }
+    .search input {
+	width: 100%;
+	height: 40px;
+	outline: none;
+	border: 1px solid gainsboro;
+    }
+    .search button {
+	height: 40px;
+	background-color: #f36c3d;
+	color: white;
+	margin: 0px 0px 0px -30px;
+	padding: 10px;
+	border: none;
+    }
+    .row-centered {
+	text-align: center;
+	margin: 250px 0px 0px 150px;
+    }
+    .hrm {
+    position: absolute;
+    width: 100%;
+    bottom: 80px;
+    height: 75px;
+    background: transparent url('../img/houses.png') repeat-x bottom center;
+    background-size: 100% 70px;
+}
+
+}
+
+
+.navbar-default {
+    background-color: white;
+}
+.main {
+    background: linear-gradient(to bottom, #faf9f7 0%, #d9f0fb 100%);
+    border-bottom: 1px solid grey;
+}
+.main-def {
+    padding-top: 35px;
+}
+.main-lg {
+    padding-top: 75px;
+}
+.accordion-toggle td {
+    text-align: left;
+}
+.out tr {
+    margin-left: 2px;
+}
+.out td {
+    text-indent: 20px;
+    text-align: left;
+}
+.colorize {
+    background-color: lightgoldenrodyellow;
+}
+.hiddenRow {
+    padding: 0 !important;
+}
+.top-panel {
+    text-align: right;
+    margin: 0px 28px 0px 0px;
+}
+#provider {
+    width: 100%;
+}
+#provider .btn {
+    width: 100%;
+}
+.panel {
+    text-align: left;
+}
+/* Table Row hovers */
+
+.show-cntx-btns td: last-child .btn-group {
+    display: none;
+}
+
+.show-cntx-btns tr:hover > td: last-child > .btn-group {
+    display: block;
+}
+
+table.show-cntx-btns {
+    table-padding: 0;
+    table-spacing: 0;
+    border-collapse: collapse;
+}
+table.show-cntx-btns tbody tr td {
+    vertical-align: middle;
+}
+.tabbable-panel {
+    border: 1px solid #eee;
+    padding: 10px;
+}
+.tabbable-panel-inner {
+    padding: 2px;
+    border: 0px solid #fff;
+    font-size: 11px;
+    margin: -10px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+}
+.tabbable-line > .nav-tabs {
+    border: none;
+    margin: 0px;
+}
+.tabbable-line > .nav-tabs > li {
+    margin-right: 2px;
+}
+.tabbable-line > .nav-tabs > li > a {
+    border: 0;
+    margin-right: 0;
+    color: #737373;
+}
+.tabbable-line > .nav-tabs > li > a > i {
+    color: #a6a6a6;
+}
+.tabbable-line > .nav-tabs > li.open, .tabbable-line > .nav-tabs > li:hover {
+    border-bottom: 4px solid #fbcdcf;
+}
+.tabbable-line > .nav-tabs > li.open > a, .tabbable-line > .nav-tabs > li:hover > a {
+    border: 0;
+    background: none !important;
+    color: #333333;
+}
+.tabbable-line > .nav-tabs > li.open > a > i, .tabbable-line > .nav-tabs > li:hover > a > i {
+    color: #a6a6a6;
+}
+.tabbable-line > .nav-tabs > li.open .dropdown-menu, .tabbable-line > .nav-tabs > li:hover .dropdown-menu {
+    margin-top: 0px;
+}
+.tabbable-line > .nav-tabs > li.active {
+    border-bottom: 4px solid #f3565d;
+    position: relative;
+}
+.tabbable-line > .nav-tabs > li.active > a {
+    border: 0;
+    color: #333333;
+}
+.tabbable-line > .nav-tabs > li.active > a > i {
+    color: #404040;
+}
+.tabbable-line > .tab-content {
+    margin-top: -3px;
+    background-color: #fff;
+    border: 0;
+    border-top: 1px solid #eee;
+    padding: 15px 0;
+}
+.portlet .tabbable-line > .tab-content {
+    padding-bottom: 0;
+}
+.righter {
+    float: right;
+}
+.items-in-list {
+    margin-top: -20px;
+}
+.tabbable-line.tabs-below > .nav-tabs > li {
+    border-top: 4px solid transparent;
+}
+.tabbable-line.tabs-below > .nav-tabs > li > a {
+    margin-top: 0;
+}
+.tabbable-line.tabs-below > .nav-tabs > li:hover {
+    border-bottom: 0;
+    border-top: 4px solid #fbcdcf;
+}
+.tabbable-line.tabs-below > .nav-tabs > li.active {
+    margin-bottom: -2px;
+    border-bottom: 0;
+    border-top: 4px solid #f3565d;
+}
+.tabbable-line.tabs-below > .tab-content {
+    margin-top: -10px;
+    border-top: 0;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+}
+.dropdown-menu {
+    min-width: 270px;
+}
+.elips {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.boxed {
+    height: 280px;
+}
+.boxed-small {
+    height: 210px;
+}
+.panel-z {
+    text-align: left;
+    height: 260px;
+    -moz-box-shadow: 0 0 3px #ccc;
+    -webkit-box-shadow: 0 0 3px #ccc;
+    box-shadow: 0 0 3px #ccc;
+}
+.panel-z-small {
+    text-align: left;
+    height: 200px;
+    -moz-box-shadow: 0 0 3px #ccc;
+    -webkit-box-shadow: 0 0 3px #ccc;
+    box-shadow: 0 0 3px #ccc;
+}
+.btn-panel {
+    text-align: right;
+    margin: 12px 0px 0px 0px;
+}
+.btn-panel-left {
+    text-align: left;
+    margin: 12px 0px 0px 0px;
+}
+.user-name {
+    margin-top: 0px;
+}
+.contractor-params {
+    dispalay: inline-block;
+    margin: -10px 0px -20px 0px;
+}
+.contractor-param {
+    display: inline-block;
+    width: 45px;
+    height: 25px;
+    color: #808080;
+    background-color: #f5f5f5;
+    text-align: center;
+    margin-right: 2px;
+    border-radius: 2px;
+    line-height: 25px;
+}
+.result-params {
+    display: inline-block;
+}
+.result-param {
+    display: inline-block;
+    width: 45px;
+    height: 25px;
+    color: #808080;
+    background-color: #f5f5f5;
+    text-align: center;
+    margin-right: 2px;
+    border-radius: 2px;
+    line-height: 25px;
+}
+.tags {
+    margin: -15px -15px 0px 0px;
+}
+.centered {
+    text-align: center;
+    margin: 20px 20px 20px 20px;
+}
+.form-signin input[type="text"] {
+    margin-bottom: -1px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+.form-signin .form-control {
+    position: relative;
+    font-size: 16px;
+    height: auto;
+    padding: 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.lang-det {
+    color: rgba(0,0,0,.25);    
+}
+
+.rtl {
+    direction: rtl;
+}
+
+.dropdown-right {
+    float: right;
+}
+
+.no-border {
+    border: none;
+}
+
+.move {
+    margin-bottom: 80px;
+}
+
+
+.line {
+    margin: 10px 0px 0px 0px;
+}
+
+.plate {
+    background: #eee;
+    height: 132px;
+    width: 102px;
+box-shadow: 1px 1px 1px #888888;		    
+ border: 1px solid #eee;
+}
+
+.plate2 {
+    background: #eee;
+    height: 50px;
+    width: 320px;
+box-shadow: 1px 1px 1px #888888;		    
+ border: 1px solid #eee;
+}
+
+.img-bt {
+    margin: 0 0 1px 0;
+ border-bottom: 1px solid #ddd;
+}

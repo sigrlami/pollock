@@ -66,14 +66,17 @@ import           Types.Channel
               
 -- | The indexHandler will be invoked whenever someone 
 --   accesses the root URL, "/".
-handlerIndex :: Handler Pollock Pollock ()
-handlerIndex = do
+handlerDashboard :: Handler Pollock (AuthManager  Pollock) ()
+handlerDashboard = do
   let start = UTCTime (fromGregorian 2016 02 1) 0
   let end   = UTCTime (fromGregorian 2016 03 1) 0
   polls <-  liftPG $ \conn -> liftIO $ Db.getPollsForRange conn start end
   logError $ BSC.pack $ (show polls) 
-  renderWithSplices "index" $ do
+  renderWithSplices "dashboard" $ do
     "polls" ## renderPolls polls
+
+handlerIndex :: Handler Pollock Pollock ()
+handlerIndex = render "index"
 
 -- Used to output an error to the user where needed.
 renderError :: Show a => a -> Handler Pollock (AuthManager Pollock) ()
@@ -179,7 +182,7 @@ handlerLogin :: Handler Pollock (AuthManager Pollock) ()
 handlerLogin = method GET handleForm <|> method POST handleFormSubmit
     where
         handleForm = render "login"
-        handleFormSubmit = loginUser "username" "password" Nothing renderError (redirect "/")
+        handleFormSubmit = loginUser "username" "password" Nothing renderError (redirect "/app")
 
 -- Triggers on the /signout page
 handlerLogout :: Handler Pollock (AuthManager Pollock) ()

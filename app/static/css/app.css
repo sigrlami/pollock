@@ -8,11 +8,27 @@ html {
     height: 100%;
 }
 
+.main {
+  background-image: url(../img/bg.jpg);
+  background-size: cover;
+  opacity: .8;
+  border-bottom: 1px solid grey;
+}
+
+.intro-section-main {
+    height: 100%;
+    padding-top: 20%;
+    text-align: center;
+    background-image: url(../img/bg.jpg);
+    background-size: cover;
+    opacity: .8;
+    border-bottom: 1px solid grey;
+}
+
 .intro-section {
     height: 100%;
     padding-top: 150px;
     text-align: center;
-    background: #fff;
 }
 
 .about-section {
@@ -93,6 +109,15 @@ input[readonly] {
     color: #fff;
 }
 
+.btn-nb-white {
+    color: #fff;
+}
+
+.btn-nb-white-bold {
+    color: #fff;
+    font-weight: 600;
+}
+
 .btn-primary {
     color: #;
     color: #fff;
@@ -106,4 +131,53 @@ input[readonly] {
 
 .glyphicon {
     font-size: 18px;
+}
+
+.footer {
+    background-color: #f8f8f8;  
+    border-color: #e7e7e7;
+    margin: 0 0 0 0;
+}
+
+.copyright {
+    text-align:center;
+    clear: both;
+    width: 100%;
+    display: inline-block;
+}
+
+.copyright #left {
+    float: left;
+    width: 50%;
+    text-align: right;
+}
+
+.copyright #right{
+   float: right;
+   width: 50%;
+   text-align: left;
+}
+
+.footer #powered {
+    text-align:center;
+    margin: -10px 0 0 70px;
+}
+
+
+.text-vertical-center {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.text-vertical-center h1{
+    color: white;
+    font-size: 5.5em;
+    font-weight: 900;
+}
+
+.text-vertical-center h3{
+    color: white;
+    font-size: 3.5em;
+    font-weight: 700;
 }

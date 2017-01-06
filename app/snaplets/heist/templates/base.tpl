@@ -7,10 +7,11 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Pollock - best polling system</title>
+    <title>Pollock - best e-voting system</title>
     <link href="../static/css/bootstrap.min.css" rel="stylesheet">
     <link href="../static/css/app.css" rel="stylesheet">
-
+    <link href="../static/css/bootstrap-datepicker3.standalone.min.css" rel="stylesheet">
+    
 </head>
 
 <!-- The #page-top ID is part of the scrolling feature - the data-spy and data-target are part of the built-in Bootstrap scrollspy function -->
@@ -30,7 +31,7 @@
                 <a class="navbar-brand page-scroll" href="/">
                    <img style="height: 30px; margin-top: -5px;" src="../static/img/logo.png">
                </a>
-               <a class="navbar-brand page-scroll" href="/"> pollock </a>
+               <a class="navbar-brand page-scroll" href="/app"> pollock </a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -38,7 +39,7 @@
                 <ul class="nav navbar-nav pull-right">
                     <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
                     <li class="hidden">
-                        <a class="page-scroll" href="/"></a>
+                        <a class="page-scroll" href="/app"></a>
                     </li>
 		    <li>
                       <ifLoggedIn>
@@ -53,8 +54,8 @@
                     <li>
 		     <ifLoggedOut> 
                      <div class="btn-group" role="group" aria-label="..." style="margin-top: 7px;">
-                       <a class="btn btn-default" href="/signup" role="button">Sign Up</a>
-		       <a class="btn btn-primary" href="/login" role="button">Log In</a>
+                       <a class="btn btn-nb-white-bold" href="/signup" role="button">Sign Up</a>
+		       <a class="btn btn-nb-white" href="/login" role="button">Log In</a>
                      </div>
 		     </ifLoggedOut>
 		     <ifLoggedIn>
@@ -81,13 +82,18 @@
         </div>
     </section>
 
-    <footer class="navbar navbar-bottom">
-      <h4 style="text-align:center"> (c) 2015-2017, Kelecorix, Inc</h4>
+    <footer class="navbar navbar-bottom footer">
+      <div class="copyright">
+	<h4 id="left">&copy; 2017, </h4> <h4 id="right"> Kelecorix, Inc </h4>
+      </div>	
     </footer>
 
     <script src="../static/js/jquery.js"></script>
     <script src="../static/js/bootstrap.min.js"></script>
     <script src="../static/js/jquery.easing.min.js"></script>
     <script src="../static/js/scrolling-nav.js"></script>
+    <script src="../static/js/bootstrap-datepicker.min.js"></script>
+    <script src="../static/js/app.js"></script>
+    
 </body>
 </html>

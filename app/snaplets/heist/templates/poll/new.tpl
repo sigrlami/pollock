@@ -20,27 +20,17 @@
                         <div class='row'>
                             <div class='col-sm-12'>
                                 <label for="start">Start</label><br />
-                                <div class='input-group date' id='startpicker'>
-                                    <input type='text' class="form-control" required="required" name="start" id="start" />
-                                    <span class="input-group-addon">
-				      <span class="glyphicon glyphicon-calendar">
-				      </span>
-                                    </span>
-                                </div>
-                            </div>
+<div class="input-group date">
+  <input type="text" class="form-control" name="startpicker" id="startpicker"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+</div>                            </div>
                         </div>
 
                         <div class='row'>
                             <div class='col-sm-12'>
                                 <label for="end">End</label><br />
-                                <div class='input-group date' id='endpicker'>
-                                    <input type='text' class="form-control" required="required" name="end" id="end" />
-                                    <span class="input-group-addon">
-				      <span class="glyphicon glyphicon-calendar">
-				      </span>
-                                    </span>
-                                </div>
-                            </div>
+ <div class="input-group date">
+  <input type="text" class="form-control" name="endpicker" id="endpicker"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+</div>                           </div>
                         </div>
 
                         <div class='row'>

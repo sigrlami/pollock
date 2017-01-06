@@ -29,16 +29,16 @@
                 </button>
                 <a class="navbar-brand page-scroll" href="/">
                    <img style="height: 30px; margin-top: -5px;" src="static/img/logo.png">
-		</a>
-		<ifLoggedOut> <a class="navbar-brand brand page-scroll" href="/"> pollock </a> </ifLoggedOut>
-		<ifLoggedIn> <a class="navbar-brand brand page-scroll" href="/app"> pollock </a> </ifLoggedIn>
+               </a>
+               <a class="navbar-brand brand page-scroll" href="#page-top"> pollock </a>
             </div>
+
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav pull-right">
                     <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
                     <li class="hidden">
-                        <a class="page-scroll" href="#page-top"></a>
+                        <a class="page-scroll" href="/app"></a>
                     </li>
 		    <li>
                       <ifLoggedIn>
@@ -53,14 +53,14 @@
                     <li>
 		     <ifLoggedOut> 
                      <div class="btn-group" role="group" aria-label="..." style="margin-top: 7px;">
-                       <a class="btn btn-nb-white-bold" href="/signup" role="button">Sign Up</a>
-		       <a class="btn btn-nb-white" href="/login" role="button">Log In</a>
+                       <a class="btn btn-default" href="/signup" role="button">Sign Up</a>
+		       <a class="btn btn-primary" href="/login" role="button">Log In</a>
                      </div>
 		     </ifLoggedOut>
 		     <ifLoggedIn>
 		       <div class="btn-group" role="group" aria-label="..." style="margin-top: 7px;">
-		       <a class="btn btn-nb-white-bold" href="#"><loggedInUser/></a>
-		       <a class="btn btn-nb-white" href="/logout" role="button">Log Out</a>
+		       <a class="btn btn-default" href="#"><loggedInUser/></a>
+		       <a class="btn btn-primary" href="/logout" role="button">Log Out</a>
                      </div>
 		     </ifLoggedIn>  
                     </li>
@@ -72,12 +72,35 @@
     </nav>
 
     <!-- Intro Section -->
-    <section id="intro" class="intro-section-main">
-        <div class="container header">
-	  <div class="text-vertical-center">
-	    <h1>Modern E-Voting</h1>
-	    <h3>Power your polls with zero-knowledge proof of authenticity</h3>
-	  </div>  
+    <section id="intro" class="intro-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                  <h1>Popular Polls</h1>
+		   <ifLoggedIn>
+		     <polls>
+		       <div>
+			 <h3><a href="/polls/view/${pollid}"><polltitle /></a></h3>			        <p><polldescription /></p>
+			 <ul>
+			   <li><pollstart /></li>
+			   <li><pollend /></li>
+			 </ul>
+		       </div>
+		     </polls>  
+                  </ifLoggedIn> 
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1>Trending Polls</h1>
+                </div>
+            </div>
         </div>
     </section>
 

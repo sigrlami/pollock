@@ -62,7 +62,6 @@ import           Types.Poll
 import           Types.Channel
 
 --------------------------------------------------------------------------------
-
               
 -- | The indexHandler will be invoked whenever someone 
 --   accesses the root URL, "/".
@@ -141,7 +140,7 @@ handlerPollNew :: Handler Pollock (AuthManager Pollock) ()
 handlerPollNew = method GET (withLoggedInUser handleForm) <|> method POST (withLoggedInUser handleFormSubmit)
   where
     handleForm :: Db.User -> Handler Pollock (AuthManager Pollock) ()
-    handleForm _ = render "polls/new"
+    handleForm _ = render "poll/new"
 
     handleFormSubmit :: Db.User -> Handler Pollock (AuthManager Pollock) ()
     handleFormSubmit user = 
@@ -175,7 +174,25 @@ handlerPollNew = method GET (withLoggedInUser handleForm) <|> method POST (withL
       --    end''   =   
       return $ Poll 0 (Just title') (Just desc') (Just start') (Just end') (Just 0) Nothing 
     parseParameters' _ = Nothing
-    
+
+
+handlerPollView :: Handler Pollock (AuthManager Pollock) ()
+handlerPollView = method GET (withLoggedInUser handleForm) <|> method POST (withLoggedInUser handleFormSubmit)
+  where
+    handleForm :: Db.User -> Handler Pollock (AuthManager Pollock) ()
+    handleForm _ = render "poll/view"
+
+    handleFormSubmit :: Db.User -> Handler Pollock (AuthManager Pollock) ()
+    handleFormSubmit user = undefined
+
+handlerPollDelete :: Handler Pollock (AuthManager Pollock) ()
+handlerPollDelete = method GET (withLoggedInUser handleForm) <|> method POST (withLoggedInUser handleFormSubmit)
+  where
+    handleForm :: Db.User -> Handler Pollock (AuthManager Pollock) ()
+    handleForm _ = render "poll/delete"
+
+    handleFormSubmit :: Db.User -> Handler Pollock (AuthManager Pollock) ()
+    handleFormSubmit user = undefined
     
 -- Triggers on the /signin page
 handlerLogin :: Handler Pollock (AuthManager Pollock) ()

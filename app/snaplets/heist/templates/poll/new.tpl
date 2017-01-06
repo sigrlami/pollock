@@ -1,5 +1,5 @@
 <apply template="base">
-    <bind tag="pagetitle">New poll</bind>
+    <bind tag="pagetitle">Create poll</bind>
     <div class='row'>
         <div class='col-sm-4'>
             <form method="POST">

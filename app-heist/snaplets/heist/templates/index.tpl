@@ -7,9 +7,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Pollock - best polling system</title>
-    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../static/css/app.css" rel="stylesheet">
+    <title>Pollock - best e-voting system</title>
+    <link href="static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/css/app.css" rel="stylesheet">
 
 </head>
 
@@ -28,39 +28,39 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand page-scroll" href="/">
-                   <img style="height: 30px; margin-top: -5px;" src="../static/img/logo.png">
-               </a>
-               <a class="navbar-brand page-scroll" href="/"> pollock </a>
+                   <img style="height: 30px; margin-top: -5px;" src="static/img/logo.png">
+		</a>
+		<ifLoggedOut> <a class="navbar-brand brand page-scroll" href="/"> pollock </a> </ifLoggedOut>
+		<ifLoggedIn> <a class="navbar-brand brand page-scroll" href="/app"> pollock </a> </ifLoggedIn>
             </div>
-
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav pull-right">
                     <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
                     <li class="hidden">
-                        <a class="page-scroll" href="/"></a>
+                        <a class="page-scroll" href="#page-top"></a>
                     </li>
 		    <li>
                       <ifLoggedIn>
-			 <a href="/channels" class="btn"><span class="brand glyphicon glyphicon-align-left"></span></a>
+			 <a href="/channels" class="btn btn-menu"><span class="brand glyphicon glyphicon-align-left"></span></a>
                       </ifLoggedIn> 
                     </li>
-		    <li>
+                    <li>
                       <ifLoggedIn>
-			 <a href="/polls/new" class="btn"><span class="brand glyphicon glyphicon-plus"></span></a>
-                      </ifLoggedIn> 
+			 <a href="/polls/new" class="btn btn-menu"><span class="brand glyphicon glyphicon-plus"></span></a>
+                  </ifLoggedIn> 
                     </li>
                     <li>
 		     <ifLoggedOut> 
                      <div class="btn-group" role="group" aria-label="..." style="margin-top: 7px;">
-                       <a class="btn btn-default" href="/signup" role="button">Sign Up</a>
-		       <a class="btn btn-primary" href="/login" role="button">Log In</a>
+                       <a class="btn btn-nb-white-bold" href="/signup" role="button">Sign Up</a>
+		       <a class="btn btn-nb-white" href="/login" role="button">Log In</a>
                      </div>
 		     </ifLoggedOut>
 		     <ifLoggedIn>
 		       <div class="btn-group" role="group" aria-label="..." style="margin-top: 7px;">
-		       <a class="btn btn-default" href="#"><loggedInUser/></a>
-		       <a class="btn btn-primary" href="/logout" role="button">Log Out</a>
+		       <a class="btn btn-nb-white-bold" href="#"><loggedInUser/></a>
+		       <a class="btn btn-nb-white" href="/logout" role="button">Log Out</a>
                      </div>
 		     </ifLoggedIn>  
                     </li>
@@ -71,23 +71,25 @@
         <!-- /.container -->
     </nav>
 
-       <section id="intro" class="intro-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <apply-content />
-                </div>
-            </div>
+    <!-- Intro Section -->
+    <section id="intro" class="intro-section-main">
+        <div class="container header">
+	  <div class="text-vertical-center">
+	    <h1>Modern E-Voting</h1>
+	    <h3>Power your polls with zero-knowledge proof of authenticity</h3>
+	  </div>  
         </div>
     </section>
 
-    <footer class="navbar navbar-bottom">
-      <h4 style="text-align:center"> (c) 2015-2017, Kelecorix, Inc</h4>
+    <footer class="navbar navbar-bottom footer">
+      <div class="copyright">
+	<h4 id="left">&copy; 2017, </h4> <h4 id="right"> Kelecorix, Inc </h4>
+      </div>	
     </footer>
 
-    <script src="../static/js/jquery.js"></script>
-    <script src="../static/js/bootstrap.min.js"></script>
-    <script src="../static/js/jquery.easing.min.js"></script>
-    <script src="../static/js/scrolling-nav.js"></script>
+    <script src="static/js/jquery.js"></script>
+    <script src="static/js/bootstrap.min.js"></script>
+    <script src="static/js/jquery.easing.min.js"></script>
+    <script src="static/js/scrolling-nav.js"></script>
 </body>
 </html>

@@ -62,18 +62,20 @@ import           Types.Poll
 import           Types.Channel
 
 --------------------------------------------------------------------------------
-
               
 -- | The indexHandler will be invoked whenever someone 
 --   accesses the root URL, "/".
-handlerIndex :: Handler Pollock Pollock ()
-handlerIndex = do
+handlerDashboard :: Handler Pollock (AuthManager  Pollock) ()
+handlerDashboard = do
   let start = UTCTime (fromGregorian 2016 02 1) 0
   let end   = UTCTime (fromGregorian 2016 03 1) 0
   polls <-  liftPG $ \conn -> liftIO $ Db.getPollsForRange conn start end
   logError $ BSC.pack $ (show polls) 
-  renderWithSplices "index" $ do
+  renderWithSplices "dashboard" $ do
     "polls" ## renderPolls polls
+
+handlerIndex :: Handler Pollock Pollock ()
+handlerIndex = render "index"
 
 -- Used to output an error to the user where needed.
 renderError :: Show a => a -> Handler Pollock (AuthManager Pollock) ()
@@ -138,7 +140,7 @@ handlerPollNew :: Handler Pollock (AuthManager Pollock) ()
 handlerPollNew = method GET (withLoggedInUser handleForm) <|> method POST (withLoggedInUser handleFormSubmit)
   where
     handleForm :: Db.User -> Handler Pollock (AuthManager Pollock) ()
-    handleForm _ = render "polls/new"
+    handleForm _ = render "poll/new"
 
     handleFormSubmit :: Db.User -> Handler Pollock (AuthManager Pollock) ()
     handleFormSubmit user = 
@@ -147,8 +149,8 @@ handlerPollNew = method GET (withLoggedInUser handleForm) <|> method POST (withL
         parameters <- mapM getParam ["title", "description", "start", "end"]
         let params = fromMaybe [] $ sequence parameters
         logError $ BSC.pack $ (show params)
-        -- $ parseParameters params 
         let poll = def
+            poll'= parseParameters' params
         liftPG $ \conn -> liftIO $ Db.savePoll conn poll
         redirect "/"
       
@@ -161,13 +163,43 @@ handlerPollNew = method GET (withLoggedInUser handleForm) <|> method POST (withL
       end'       <- readBSMaybe' end
       return (title', desc', start', end')
     parseParameters _ = Nothing
-                      
+
+    parseParameters' :: [BS.ByteString] -> Maybe Poll
+    parseParameters' [title, desc, start, end] = do
+      let title' = T.decodeUtf8 title
+      let desc'  = T.decodeUtf8 desc
+      start'     <- readBSMaybe' start
+      end'       <- readBSMaybe' end
+      -- let start'' = 
+      --    end''   =   
+      return $ Poll 0 (Just title') (Just desc') (Just start') (Just end') (Just 0) Nothing 
+    parseParameters' _ = Nothing
+
+
+handlerPollView :: Handler Pollock (AuthManager Pollock) ()
+handlerPollView = method GET (withLoggedInUser handleForm) <|> method POST (withLoggedInUser handleFormSubmit)
+  where
+    handleForm :: Db.User -> Handler Pollock (AuthManager Pollock) ()
+    handleForm _ = render "poll/view"
+
+    handleFormSubmit :: Db.User -> Handler Pollock (AuthManager Pollock) ()
+    handleFormSubmit user = undefined
+
+handlerPollDelete :: Handler Pollock (AuthManager Pollock) ()
+handlerPollDelete = method GET (withLoggedInUser handleForm) <|> method POST (withLoggedInUser handleFormSubmit)
+  where
+    handleForm :: Db.User -> Handler Pollock (AuthManager Pollock) ()
+    handleForm _ = render "poll/delete"
+
+    handleFormSubmit :: Db.User -> Handler Pollock (AuthManager Pollock) ()
+    handleFormSubmit user = undefined
+    
 -- Triggers on the /signin page
 handlerLogin :: Handler Pollock (AuthManager Pollock) ()
 handlerLogin = method GET handleForm <|> method POST handleFormSubmit
     where
         handleForm = render "login"
-        handleFormSubmit = loginUser "username" "password" Nothing renderError (redirect "/")
+        handleFormSubmit = loginUser "username" "password" Nothing renderError (redirect "/app")
 
 -- Triggers on the /signout page
 handlerLogout :: Handler Pollock (AuthManager Pollock) ()

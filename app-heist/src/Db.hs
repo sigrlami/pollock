@@ -103,7 +103,7 @@ getPoll conn id = do
 
 savePoll :: Connection -> Poll -> IO Integer
 savePoll conn poll = do
-  let query'' = fromString $ "INSERT INTO poll(title, desc, start, end, owner, channel_id ) VALUES (?, ?, ?, ?, ?, ?) returning id"
+  let query'' = fromString $ "INSERT INTO poll(id, title, desc, start, end, owner, channel_id ) VALUES (?, ?, ?, ?, ?, ?, ?) returning id"
   (xs::[Only Integer]) <- query conn query'' poll
   case headMay xs of
     Nothing -> return $ 1
@@ -122,10 +122,11 @@ getPollsForRange :: Connection -> UTCTime -> UTCTime -> IO [Poll]
 getPollsForRange conn start end = do
   let !query'  =  Data.List.unlines
                  [ "SELECT * FROM poll"
-                 , "WHERE start=? AND end=?"  
+                 , "WHERE start=? AND finish=?"  
                  ]  
       !query'' = fromString $ query' :: Query
-      vals = [start, end] 
+      vals = [start, end]
+  putStrLn $ show $ vals     
   (xss::[Poll]) <- query conn query'' vals
   return xss
   

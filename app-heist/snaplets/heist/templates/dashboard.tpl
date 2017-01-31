@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Pollock - best polling system</title>
+    <title>Pollock - best e-voting system</title>
     <link href="static/css/bootstrap.min.css" rel="stylesheet">
     <link href="static/css/app.css" rel="stylesheet">
 
@@ -27,7 +27,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand page-scroll" href="#page-top">
+                <a class="navbar-brand page-scroll" href="/">
                    <img style="height: 30px; margin-top: -5px;" src="static/img/logo.png">
                </a>
                <a class="navbar-brand brand page-scroll" href="#page-top"> pollock </a>
@@ -38,7 +38,7 @@
                 <ul class="nav navbar-nav pull-right">
                     <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
                     <li class="hidden">
-                        <a class="page-scroll" href="#page-top"></a>
+                        <a class="page-scroll" href="/app"></a>
                     </li>
 		    <li>
                       <ifLoggedIn>
@@ -104,8 +104,10 @@
         </div>
     </section>
 
-    <footer class="navbar navbar-bottom">
-      <h4 style="text-align:center"> (c) 2015-2017, Kelecorix, Inc</h4>
+    <footer class="navbar navbar-bottom footer">
+      <div class="copyright">
+	<h4 id="left">&copy; 2017, </h4> <h4 id="right"> Kelecorix, Inc </h4>
+      </div>	
     </footer>
 
     <script src="static/js/jquery.js"></script>

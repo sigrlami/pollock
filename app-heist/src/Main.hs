@@ -46,14 +46,16 @@ import           Types.Channel
 --------------------------------------------------------------------------------    
 
 routes :: [(BS.ByteString, Handler Pollock Pollock ())]
-routes = [ ("/signup"             , with auth handlerSignup)
-         , ("/login"              , with auth handlerLogin)
-         , ("/logout"             , with auth handlerLogout)
-         , ("/polls/new"          , with auth handlerPollNew)
-         --, ("/poll/view/:pollid"   , with auth handlerPollView)
-         --, ("/poll/delete/:pollid", with auth handlerPollDelete)
-         , ("static"              , serveDirectory "static")
-         , (""                    , handlerIndex)
+routes = [ ("/"                    , handlerIndex)  
+         , ("/app"                 , with auth handlerDashboard)
+         , ("/signup"              , with auth handlerSignup)
+         , ("/login"               , with auth handlerLogin)
+         , ("/logout"              , with auth handlerLogout)
+         , ("/polls/new"           , with auth handlerPollNew)
+         , ("/poll/view/:pollid"   , with auth handlerPollView)
+         , ("/poll/delete/:pollid" , with auth handlerPollDelete)
+         , ("static"               , serveDirectory "static")
+         , (".well-known"          , serveDirectory ".well-known")   
          ]           
 
 -- | Build a new Pollock snaplet.

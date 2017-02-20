@@ -1,4 +1,4 @@
-# Haskell Web Development Study Course
+# Haskell Web Development Study
 
 | Path            | Technology Stack             | URL                            | Comment                                                    |
 |-----------------|------------------------------|--------------------------------|------------------------------------------------------------|
@@ -9,3 +9,6 @@
 |`app-elm`        | Haskell+Snap+Elm             | https://app6.dev.pollock.rocks | how webapps built now
 |`app-heist`      | Haskell+Snap+Heist           | https://app1.dev.pollock.rocks | how webapps were built before 2016 (with own backend)
 |`app-backend`    | Haskell+Snap+Servant         |                                | shared backend for Reflex, Elm, React, Purescript apps
+
+
+Accompanying files to article series ["Modern Web Development with Haskell"](https://sigrlami.eu/en/content/series/modern-web-development-with-haskell.html)

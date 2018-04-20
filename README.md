@@ -11,4 +11,4 @@
 |`app-backend`    | Haskell+Snap+Servant         |                                | shared backend for Reflex, Elm, React, Purescript apps
 
 
-Accompanying files to article series ["Modern Web Development with Haskell"](https://sigrlami.eu/en/content/series/modern-web-development-with-haskell.html)
+Accompanying files to article series ["Web Development in Haskell"](https://sigrlami.eu/en/content/series/web-development-in-haskell.html)

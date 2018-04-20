@@ -1,5 +1,5 @@
-# react-redux-starter-kit
-Modular starter kit for React+Redux+React Router projects.
+# Pollock App with React & TypeScript
+
 
 ## Install packages
 ```npm install``` in root of project

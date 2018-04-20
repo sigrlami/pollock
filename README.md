@@ -3,7 +3,7 @@
 | Path            | Technology Stack                | URL                            | Comment                                                    |
 |-----------------|---------------------------------|--------------------------------|------------------------------------------------------------|
 |`app-reflex`     | Haskell+Servant+Reflex          | https://app.dev.pollock.rocks  | how webapps built now
-|`app-react`      | Haskell+Servant+React+TypeScript| https://app1.dev.pollock.rocks | how webapps built now with React & TypeScript
+|`app-react-typescript`      | Haskell+Servant+React+TypeScript| https://app1.dev.pollock.rocks | how webapps built now with React & TypeScript
 |`app-purescript` | Haskell+Servant+PureScript      | https://app2.dev.pollock.rocks | how webapps built now
 |`app-elm`        | Haskell+Servant+Elm             | https://app3.dev.pollock.rocks | how webapps built now
 |`app-elm`        | Haskell+Servant+Elm             | https://app3.dev.pollock.rocks | how webapps built now

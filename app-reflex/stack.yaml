@@ -1,0 +1,29 @@
+flags: {}
+
+resolver: lts-6.30
+compiler: ghcjs-0.2.0.9006030_ghc-7.10.3
+compiler-check: match-exact
+setup-info:
+  ghcjs:
+    source:
+      ghcjs-0.2.0.9006030_ghc-7.10.3:
+         url: http://ghcjs.tolysz.org/lts-6.30-9006030.tar.gz
+         sha1: 2371e2ffe9e8781808b7a04313e6a0065b64ee51
+
+packages:
+- location: '.'
+- location:
+    git: https://github.com/ryantrinkle/reflex-dom.git
+    commit: c51a5585860db17ce63601524340f09cb75f0129
+- location:
+    git: https://github.com/reflex-frp/reflex.git
+    commit: a63aba90bdea5ae5b3e1506d468613bdfedcdfa3
+
+extra-deps:
+  - these-0.6.2.1
+  - zenc-0.1.1
+  - ref-tf-0.4
+  - ghcjs-dom-0.2.3.0
+  - string-quote-0.0.1
+  - reflex-0.4.0.1
+  - reflex-dom-0.3

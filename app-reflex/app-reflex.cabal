@@ -1,0 +1,36 @@
+name:                pollock-app
+version:             0.1.0.0
+synopsis:            Pollock Front-End built in Reflex FRP / Haskell
+description:         Please see README.md
+homepage:            http://github.com/sigrlami/pollock#readme
+license:             AllRightsReserved
+license-file:        LICENSE
+author:              Sergey Bushnyak
+maintainer:          sergey.bushnyak@sigrlami.eu
+copyright:           Copyright Sergey Bushnyak 2017
+category:            Other
+build-type:          Simple
+-- extra-source-files:
+cabal-version:       >=1.10
+
+executable pollock-app
+  hs-source-dirs:      app
+  main-is:             Main.hs
+  ghc-options:         -threaded -rtsopts -with-rtsopts=-N
+  build-depends:       base
+                     , reflex
+                     , reflex-dom
+                     , ghcjs-dom
+                     , time
+                     , text
+                     , random
+                     , string-quote
+                     , containers
+                     , aeson
+                     , file-embed
+                     , safe
+  default-language:    Haskell2010
+
+source-repository head
+  type:     git
+  location: https://github.com/sigrlami/pollock

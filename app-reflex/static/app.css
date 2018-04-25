@@ -1,0 +1,48 @@
+.recipe {
+    padding: 30px;
+    background-color: #9e9e9e3d;
+    margin: 20px;
+    box-shadow: 0px 0px 25px hsla(0, 50%, 100%, 0.45);
+}
+
+.recipe-header {
+    margin: 0px 0px 10px 0px;
+    text-size: 24sp;
+}
+
+.inputee {
+    width: 100%;
+}
+
+.output {
+    background-color: #ddd;
+    min-height: 50px;
+    margin: 5px 0px 0px 0px;
+    padding: 10px;
+}
+
+.allCounts {
+    background-color: white;
+    height: 200px;
+    vertical-align: top;
+}
+
+.countBin {
+    display: inline-block;
+    vertical-align: top;
+    width: 30px;
+    text-align: center;
+    border-style: solid;
+    border-width: 0px;
+    border-bottom-width: 1px;
+    border-color: black;
+}
+
+.noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}

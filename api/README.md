@@ -1,4 +1,4 @@
-# Shared Backend for different frontends
+# REST API Backend
 
 This backend describes shared REST Api and accompanying methods providing actual business logic. Backend is conjuction of Snap and Servant, Snap works as application container in way it works for other applications and Servant works as API endpoint providing nice type-safe interface.
 

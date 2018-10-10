@@ -1,0 +1,17 @@
+
+html,
+body {
+    font-family: 'Open Sans', serif;
+    margin: 0;
+    height: 100%;
+}
+
+.main {
+ display: flex;
+ min-height: 100vh;
+ flex-direction: column;
+ margin: 0;
+ min-height: 100%;
+ display: flex;
+ flex-flow: row wrap;
+}

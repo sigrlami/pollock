@@ -9,7 +9,11 @@
   "dependencies": {
     "purescript-prelude": "^4.1.0",
     "purescript-console": "^4.1.0",
-    "purescript-effect": "^2.0.0"
+    "purescript-effect": "^2.0.0",
+    "purescript-lists" : "^5.3.0",
+    "purescript-datetime":"^4.0.0",
+    "purescript-web-html":"^1.2.0",
+    "purescript-halogen":"^4.0.0"
   },
   "devDependencies": {
     "purescript-psci-support": "^4.0.0"
